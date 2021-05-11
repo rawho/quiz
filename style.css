@@ -1,0 +1,196 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #050d19;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+ 
+input[type="submit"]{
+    display: block;
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fca311;
+    outline: none;
+    border: none;
+    padding: 20px;
+    font-size: 20px;
+    color: #e5e5e5;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+
+.heading{
+    font-size: 50px;
+    text-align: center; 
+    margin: 50px;
+
+}
+
+.cards{
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.card{
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #14213d;
+    border-radius: 30px;
+    transition: all 1s ease;
+
+}
+
+.question-container{
+    padding: 20px;
+}
+.question-container h1{
+    font-weight: 200;
+}
+
+.options-container{
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+  
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+  
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+  
+  /* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+.score{
+    width: 60%;
+    margin: 50px auto;
+    min-height: 300px;
+    background-color: #003566;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.score h1{
+    font-size: 50px;
+    color: #80b918;
+}
+.score h2{
+    padding: 10px;
+}
+
+
+.answers{
+    display: flex;
+    flex-direction: row;
+}
+
+.answers h2{
+    font-size: 50px;
+}
+
+.correct, .wrong, .skip{
+    min-height: 100px;
+    width: 100px;
+    margin: 20px 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.correct{
+    background-color: #7edb48;
+    color: #283618;
+}
+.wrong{
+    background-color: #e85d04;
+    color: #6a040f;
+}
+.skip{
+    background-color: #ffea00;
+    color: #ff9500;
+}
+
+@media(max-width: 767px){
+    .cards{
+        grid-template-columns: 1fr;
+    }
+    .score{
+        width: 100%;
+    }
+
+    .correct, .wrong, .skip{ 
+        margin: 20px 5px; 
+    }
+}
