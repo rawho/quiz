@@ -9,6 +9,9 @@ body{
 }
 
 
+section{
+    margin-bottom: 50px;
+}
  
 input[type="submit"]{
     display: block;

@@ -17,6 +17,8 @@ cards = Array.from(cards)
 form.addEventListener('submit', e => {
     e.preventDefault();
 
+    document.querySelector('#submit').style.display = 'none'
+
     let submitedAnswers = [form.q1.value, form.q2.value, form.q3.value, form.q4.value, form.q5.value, form.q6.value, form.q7.value, form.q8.value, form.q9.value, form.q10.value]
     
     submitedAnswers.forEach((ans, index) => {
