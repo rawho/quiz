@@ -14,6 +14,37 @@ let cards = document.querySelectorAll('.card')
 cards = Array.from(cards)
 
 
+// Function to animate the score
+const timerFun = (element, value, t) => {
+    let update = 0;
+    const timer = setInterval(() => {
+        element.textContent = update
+        if(update === value){
+            clearInterval(timer)
+        }
+        update++;
+    }, t);
+}
+
+// function to show the correct 
+const updateCorrectAnswer = (div, color) => {
+    div.forEach(i => {
+        let correctAns = cards[i].querySelector(`input[value="${correctAnswers[i]}"]`)
+        correctAns.parentElement.style.color = color
+
+    })
+}
+
+// Function to update the color an the basis of answers
+const updateColor = (div, backgroundColor, color) => {
+    div.forEach(i => {
+        cards[i].style.backgroundColor = backgroundColor
+        cards[i].style.color = color
+    });
+}
+
+
+// Adding a submit event listener to the form
 form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -39,66 +70,33 @@ form.addEventListener('submit', e => {
     })
 
     wrong = Questions - (correct + skipped)
-    console.log(correctDiv, wrongDiv, skippedDiv)
+    
+    // Scrolling to the top to show the results
     scrollTo({
         top: 0,
         left: 0,
         behavior: 'smooth'
     });
 
-    const timerFun = (element, value, t) => {
-        let update = 0;
-        const timer = setInterval(() => {
-            element.textContent = update
-            if(update === value){
-                clearInterval(timer)
-            }
-            update++;
-        }, t);
-    }
-
     result.style.display = 'flex';
 
+    // calling timerFun
     timerFun(document.querySelector('.score span'), percentage, 70)
     timerFun(document.querySelector('.correct h2'), correct, 200)
     timerFun(document.querySelector('.wrong h2'), wrong, 200)
     timerFun(document.querySelector('.skip h2'), skipped, 200)
     
-    correctDiv.forEach(i => {
-        cards[i].style.backgroundColor = 'rgb(66 119 35)'
-        cards[i].style.color = '#fff'
-    });
+    // calling updateColor
+    updateColor(correctDiv, 'rgb(66 119 35)', '#fff')
+    updateColor(wrongDiv, '#e85d04', '#fff')
+    updateColor(skippedDiv, '#ffea00', '#121212')
 
-    wrongDiv.forEach(i => {
-        cards[i].style.backgroundColor = '#e85d04'
-        cards[i].style.color = '#fff'
-    });
-    skippedDiv.forEach(i => {
-        cards[i].style.backgroundColor = '#ffea00'
-        cards[i].style.color = '#121212'
-    });
+    // calling updateCorrectAnswers
+    updateCorrectAnswer(skippedDiv, "green")
+    updateCorrectAnswer(wrongDiv, "#15ff15")
+    updateCorrectAnswer(correctDiv, "#1b2902")
 
-
-    skippedDiv.forEach(i => {
-        let correctAns = cards[i].querySelector(`input[value="${correctAnswers[i]}"]`)
-        correctAns.parentElement.style.color = 'green'
-
-    })
-
-    wrongDiv.forEach(i => {
-        let correctAns = cards[i].querySelector(`input[value="${correctAnswers[i]}"]`)
-        correctAns.parentElement.style.color = '#15ff15'
-
-    })
-
-    correctDiv.forEach(i => {
-        let correctAns = cards[i].querySelector(`input[value="${correctAnswers[i]}"]`)
-        correctAns.parentElement.style.color = '#1b2902'
-
-    })
-
-
-   
 })
+
 
 
